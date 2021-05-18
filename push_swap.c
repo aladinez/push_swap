@@ -5,6 +5,8 @@ void	free_stack(t_stack *head)
 {
 	if (head)
 	{
+		t_stack *tmp;
+		
 		while (head != NULL)
 		{
 		tmp = head;
