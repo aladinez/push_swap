@@ -9,7 +9,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"program": "${workspaceFolder}/a.out",
-			"args": ["3", "2", "1"],
+			"args": ["1", "2", "2"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
