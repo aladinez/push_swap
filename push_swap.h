@@ -17,5 +17,8 @@ typedef struct s_stack {
 void	push(t_stack** root, int data);
 int		is_dupp(t_stack *root);
 int		is_sorted(t_stack *root);
+int		is_number(char *str);
+int		check_args(char **str, t_stack **root);
+void	free_stack(t_stack **head);
 
 #endif

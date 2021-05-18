@@ -1,19 +1,19 @@
 #include "push_swap.h"
 
 
-void	free_stack(t_stack *head)
+void	free_stack(t_stack **head_ref)
 {
-	if (head)
+	t_stack *head;
+	t_stack *tmp;
+
+	head = *head_ref;	
+	while (head != NULL)
 	{
-		t_stack *tmp;
-		
-		while (head != NULL)
-		{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-		}
+		tmp = head->next;
+		free(head);
+		head = tmp;
 	}
+	*head_ref = NULL;
 }
 
 int main(int argc, char **argv)
@@ -27,23 +27,21 @@ int main(int argc, char **argv)
 	else if (check_args((argv + 1), &stack_a) < 0 || is_dupp(stack_a) < 0)
 	{
 		ft_putstr_fd("ERROR\n", 2);
-		// return (0);
+		return (0);
 	}
 	if (is_sorted(stack_a))
 	{
 		ft_putstr_fd("sorted\n", 2);
-		// TODO : free stack_a
+		free_stack(&stack_a);
 		return (0);
 	}
+
 	while (stack_a)
     {
         printf("%d --> ", stack_a->data);
         stack_a = stack_a->next;
     }
-	// while (1)
-	// 	;
+	while (1)
+		;
 	return (0);
-
 }
-// gcc push_swap.c stack_modifers.c libft/libft.a -o push
-// ./push 1 2 3 4 5 6 
