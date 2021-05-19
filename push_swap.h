@@ -21,4 +21,10 @@ int		is_number(char *str);
 int		check_args(char **str, t_stack **root);
 void	free_stack(t_stack **head);
 
+void	_s(t_stack **head_ref);
+void	_ss(t_stack **a, t_stack **b);
+void	_p(t_stack **a, t_stack **b);
+void	_r(t_stack **head);
+void	print_stack(t_stack *head);
+
 #endif
