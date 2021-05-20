@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/20 15:08:02 by aez-zaou          #+#    #+#             */
+/*   Updated: 2021/05/20 15:35:09 by aez-zaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 
@@ -62,12 +74,12 @@ int main(int argc, char **argv)
 	print_stack(stack_b);
 	printf("\n");
 	
-	_p(&stack_a, &stack_b);
+	_rrr(&stack_a, &stack_b);
 
 	print_stack(stack_a);
 	print_stack(stack_b);
 
-	while (1)
-		;
+	// while (1)
+	// 	;
 	return (0);
 }

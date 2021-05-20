@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/20 15:08:07 by aez-zaou          #+#    #+#             */
+/*   Updated: 2021/05/20 17:19:48 by aez-zaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	_s(t_stack **head_ref)
+void	sa_(t_stack **head_ref)
 {
 	int		tmp;
+
 	if (*head_ref && (*head_ref)->next)
 	{
 		tmp = (*head_ref)->data;
@@ -10,13 +23,14 @@ void	_s(t_stack **head_ref)
 		(*head_ref)->next->data = tmp;
 	}
 }
-void	_ss(t_stack **a, t_stack **b)
+
+void	ss_(t_stack **a, t_stack **b)
 {
-	_s(a);
-	_s(b);
+	sa_(a);
+	sa_(b);
 }
 
-void _p(t_stack **a, t_stack **b)
+void	pa_(t_stack **a, t_stack **b)
 {
 	t_stack *tmp;
 
@@ -29,7 +43,7 @@ void _p(t_stack **a, t_stack **b)
 	}
 }
 
-void _r(t_stack **head)
+void	ra_(t_stack **head)
 {
 	t_stack *tmp;
 	int		tmp_data;
@@ -44,4 +58,35 @@ void _r(t_stack **head)
 	}
 	(*head)->data = head_data;
 	*head = tmp;
+}
+
+void	rr_(t_stack **a, t_stack **b)
+{
+	ra_(a);
+	ra_(b);
+}
+
+void	rra_(t_stack **head)
+{
+	t_stack *tmp;
+	t_stack *root;
+
+	if (*head && (*head)->next)
+	{
+		root = *head;
+		while (((*head)->next)->next)
+		{
+			*head = (*head)->next;
+		}
+		tmp = (*head)->next;
+		(*head)->next = NULL;
+		tmp->next = root;
+		*head = tmp;
+	}
+}
+
+void	rrr_(t_stack **a, t_stack **b)
+{
+	rra_(a);
+	rra_(b);
 }
