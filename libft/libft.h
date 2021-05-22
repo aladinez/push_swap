@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 19:35:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2019/10/21 17:20:09 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/21 12:18:15 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_list
 }				t_list;
 
 void			*ft_memset(void *b, int c, size_t len);
-int				ft_atoi(const char *str);
+long			ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 int				ft_isalnum(int c);
