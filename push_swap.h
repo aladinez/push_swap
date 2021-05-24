@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/22 11:51:07 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/24 18:47:02 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft/libft.h"
+#include "gnl/get_next_line.h"
 
 
 
@@ -27,6 +28,7 @@ typedef struct s_stack {
 }t_stack;
 
 void	push(t_stack** root, int data);
+void	push_back(t_stack** root, int data);
 int		is_dupp(t_stack **root);
 int		is_sorted(t_stack *root);
 int		is_number(char *str);
@@ -37,8 +39,12 @@ void	sa_(t_stack **head_ref);
 void	ss_(t_stack **a, t_stack **b);
 void	pa_(t_stack **a, t_stack **b);
 void	ra_(t_stack **head);
+void	rr_(t_stack **a, t_stack **b);
 void	rra_(t_stack **head);
 void	rrr_(t_stack **a, t_stack **b);
 void	print_stack(t_stack *head);
+int		run_instruction(char *str, t_stack **a, t_stack **b);
+int		my_strcmp(char *str1, char *str2);
+
 
 #endif
