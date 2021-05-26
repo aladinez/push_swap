@@ -8,9 +8,9 @@
 			"name": "Launch",
 			"type": "lldb",
 			"request": "launch",
-			"program": "${workspaceFolder}/a.out",
+			"program": "${workspaceFolder}/new_push/a.out",
 			"args": ["-54", "2", "5", "55"],
-			"cwd": "${workspaceFolder}"
+			"cwd": "${workspaceFolder}/new_push/"
 		}
 	]
 }

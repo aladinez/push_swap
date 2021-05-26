@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:08:02 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/24 16:56:14 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/25 19:15:14 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
+	t_stack *stack_b;
 	if (argc == 1 || (argc == 2 && is_number(argv[1])))
 	{
 		ft_putstr_fd("0 instructions\n", 2);
@@ -37,7 +38,7 @@ int main(int argc, char **argv)
 		free_stack(&stack_a);
 		return (0);
 	}
-	// TODO: check if the argument is not int. 
+	sort_algo(&stack_a, &stack_b);
 	// quick sort, insertion sort.
 
 	// t_stack *stack_b;
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 	// rrr_(&stack_a, &stack_b);
 
 	print_stack(stack_a);
-	// print_stack(stack_b);
+	print_stack(stack_b);
 
 
 	// while (1)

@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:08:11 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/24 18:04:02 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/25 19:13:29 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		is_sorted(t_stack *root)
 	while (root && root->next)
 	{
 		// printf("root : %d | root->next : %d\n", root->data, root->next->data);
-		if (root->data > root->next->data) // WTF?
+		if (root->data > root->next->data) 
 			return (0);
 
 		root = root->next;
