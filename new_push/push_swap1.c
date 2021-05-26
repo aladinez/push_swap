@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/26 16:02:49 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/26 20:52:33 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,34 @@ int		check_args(char **str, t_data *data)
 	return (1);
 }
 
-void	print_nums(t_data data)
+void	print_A(t_data data)
 {
 	int		i;
 	
-	i = data.size - 1;
+	i = data.b_index - 1;
 	while(i >= 0)
 	{
 		ft_putnbr_fd(data.stack[i], 1);
 		ft_putstr_fd(" --> ", 1);
 		i--;
 	}
-
+	ft_putchar_fd('\n', 1);
 }
+void	print_B(t_data data)
+{
+	int		i;
+	
+	i = data.b_index;
+	while(i < data.size)
+	{
+		ft_putnbr_fd(data.stack[i], 1);
+		ft_putstr_fd(" --> ", 1);
+		i++;
+	}
+	ft_putchar_fd('\n', 1);
+}
+
+
 
 int		is_A_sorted(t_data data)
 {
@@ -158,10 +173,51 @@ int main(int argc, char **argv)
 		free(data.stack);
 		return (0);
 	}
+	data.b_index = data.size;
 	
 
+	// print_stack(data);
 
-	print_nums(data);
+	// print_A(data);
+	// print_B(data);
+	
+	pb_(&data);
+	pb_(&data);
+	pb_(&data);
+
+	
+	print_stack(data);
+	print_A(data);
+	print_B(data);
+	
+	rr_(&data);
+	
+	print_stack(data);
+	print_A(data);
+	print_B(data);
+	
+	rr_(&data);
+	
+	print_stack(data);
+	print_A(data);
+	print_B(data);
+
+	
+	rrr_(&data);
+	
+	print_stack(data);
+	print_A(data);
+	print_B(data);
+	
+	rrr_(&data);
+
+	
+	print_stack(data);
+	print_A(data);
+	print_B(data);
+
+
+
 	
 	// data.stack = NULL;
 	// while (1)
@@ -170,3 +226,27 @@ int main(int argc, char **argv)
 
 	return (0);
 }
+
+ 
+void	print_stack(t_data data)
+{
+	int i;
+
+	i = 0;
+	printf ("\n-----------------------------------\n");
+	while (i < data.b_index)
+	{
+		printf("| %d ", data.stack[i]);
+		i++;
+	}
+	printf ("|---");
+	while (i < data.size)
+	{
+		printf("| %d ", data.stack[i]);
+		i++;
+	}
+	printf ("|\n----------------------------------\n");
+
+}
+
+// gcc push_swap1.c ../libft/libft.a  operations1.c
