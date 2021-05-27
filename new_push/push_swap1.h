@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap1.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/26 20:47:11 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/27 21:53:31 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,22 @@
 #include "../libft/libft.h"
 #include "../gnl/get_next_line.h"
 
+#define SORTED 1
+#define UNSORTED 0
+
 
 typedef struct s_data {
 	int		*stack;
 	int		size;
 	int		b_index;
 }t_data;
+
+typedef struct s_chunk {
+	int index[2];
+	int	is_sorted;
+	struct s_chunk *next;
+}t_chunk;
+
 
 int		is_number(char *str);
 void	print_A(t_data data);
@@ -53,6 +63,9 @@ void 	rra_(t_data *data);
 void	rrb_(t_data *data);
 void	rrr_(t_data *data);
 
+
+void	quick_sort(t_data *data);
+int		is_chunk_sorted(t_data data, int start, int end);
 
 void	print_stack(t_data data);
 
