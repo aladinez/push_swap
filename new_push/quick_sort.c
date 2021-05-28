@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 21:31:59 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 23:25:36 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ int		pick_pivot(t_data data, int start, int end)
 int		is_chunk_sorted(t_data data, int start, int end)
 {
 	int	i;
-
 	i = start;
 	while (i < end - 1)
 	{
-		// printf("root : %d | root->next : %d\n", root->data, root->next->data);
 		if (data.stack[i] < data.stack[i + 1]) 
 			return (0);
 		i++;
@@ -136,7 +134,8 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	pivot = pick_pivot(*data, start, end);
 	if (end - start == 1)
 	{
-		if ((*a)->index[start] < (*a)->index[start + 1])
+		printf("start val : %d ---- end : %d\n", data->stack[start], data->stack[start + 1]);
+		if (data->stack[start] < data->stack[start + 1])
 			sb_(data);
 		pa_(data);
 		pa_(data);
@@ -172,43 +171,54 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 			*a = NULL;
 		}
 	}
-	while (size)
-	{
-		if (data->stack[start] >= pivot && data->stack[end] >= pivot)
+	else {
+		int i = 0;
+		while (size)
 		{
-			if (data->stack[start] > data->stack[end])
+			if (!(*a)->next && data->stack[start] > pivot && data->stack[end] > pivot)
+			{
+				if (data->stack[start] > data->stack[end])
+				{
+					pa_(data);
+					start++;
+				}
+				else
+				{
+					rrb_(data);
+					pa_(data);
+					start++;
+				}
+			}
+			else if (!(*a)->next && data->stack[end] > pivot)
+			{
+				rrb_(data);
+				pa_(data);
+				start++;
+			}
+			else if (data->stack[start] > pivot)
 			{
 				pa_(data);
 				start++;
 			}
 			else
 			{
-				rrb_(data);
-				pa_(data);
-				start++;
+				rb_(data);
+				i++;
 			}
-		}
-		else if (data->stack[start] >= pivot)
-		{
-			pa_(data);
-			start++;
-		}
-		else if (data->stack[end] >= pivot)
-		{
-			rrb_(data);
-			pa_(data);
-			start++;
-		}
-		else
-			rb_(data);
-		size--;
+			size--;
+			
 
-		
-		// print_A(*data);
-		// print_B(*data);
-		// print_stack(*data);
+			
+			// print_A(*data);
+			// print_B(*data);
+			// print_stack(*data);
+		}
+		while ((i--))
+			rrb_(data);
 	}
-	(*a)->index[0] = start;
+
+	if (*a)
+		(*a)->index[0] = start;
 	if (*b)
 		push_chunk(b, (*b)->index[1], data->b_index);
 	// else
@@ -231,48 +241,60 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 		sa_(data);
 		return ;
 	}
-	printf("| 0 | 1 | 2 | 3 | 4 | 5 |\n");
-	int i = 0;
-	while (i < data->size)
+	// printf("| 0 | 1 | 2 | 3 | 4 | 5 |\n");
+	// int i = 0;
+	// while (i < data->size)
+	// {
+	// 	printf("| %d ", data->stack[i]);
+	// 	i++;
+	// }
+	// printf("|\n");
+	else
 	{
-		printf("| %d ", data->stack[i]);
-		i++;
-	}
-	printf("|\n");
-	while (--size)
-	{
-		if (data->stack[start] <= pivot && data->stack[end] <= pivot)
+		int i = 0;
+		while (--size)
 		{
-			if (data->stack[end] < data->stack[start])
+			if (!(*a)->next && data->stack[start] <= pivot && data->stack[end] <= pivot)
 			{
-				pb_(data);
-				end--;	
+				if (data->stack[end] < data->stack[start])
+				{
+					pb_(data);
+					end--;	
+				}
+				else
+				{
+					rra_(data);
+					pb_(data);
+					end--;
+				}
 			}
-			else
+			else if (!(*a)->next && data->stack[start] <= pivot)
 			{
 				rra_(data);
 				pb_(data);
 				end--;
 			}
-		}
-		else if (data->stack[end] <= pivot)
-		{
-			pb_(data);
-			end--;
-		}
-		else if (data->stack[start] <= pivot)
-		{
-			rra_(data);
-			pb_(data);
-			end--;
-		}
-		else
-			ra_(data);
+			else if (data->stack[end] <= pivot)
+			{
+				pb_(data);
+				end--;
+			}
+			else
+			{
+				ra_(data);
+				i++;
+			}
+			// TODO: if here is only one chunk, no need to reverse rotate
 			
-		// print_A(*data);
-		// print_B(*data);
-		// print_stack(*data);
+				
+			// print_A(*data);
+			// print_B(*data);
+			// print_stack(*data);
+		}
+		while ((i--))
+			rra_(data);
 	}
+		
 	(*a)->index[1] = end + 1;
 	if (*b)
 		push_chunk(b, data->b_index, (*b)->index[0] );
@@ -332,3 +354,5 @@ int quick_sort(t_data *data)
 	return (SUCCESS);
 
 }
+
+// errorrrr ./a.out 6 5 4 8 9 7 1 2 3 0 

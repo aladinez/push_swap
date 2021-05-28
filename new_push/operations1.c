@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 17:51:26 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 20:47:39 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 22:25:25 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sb_(t_data *data)
 {
 	if (data->b_index < data->size - 1)
 		swap(&data->stack[data->b_index], &data->stack[data->b_index + 1]);
-	ft_putstr_fd("sa\n", 1);
+	ft_putstr_fd("sb\n", 1);
 }
 
 void	ss_(t_data *data)

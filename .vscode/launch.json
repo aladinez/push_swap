@@ -8,9 +8,9 @@
 			"name": "Launch",
 			"type": "lldb",
 			"request": "launch",
-			"program": "${workspaceFolder}/new_push/a.out",
+			"program": "/mnt/c/Users/ALAE/Desktop/push_swap/new_push/a.out",
 			"args": ["4", "5", "6", "1", "2", "3"],
-			"cwd": "${workspaceFolder}/new_push/"
+			"cwd": "/mnt/c/Users/ALAE/Desktop/push_swap/new_push/"
 		}
 	]
 }

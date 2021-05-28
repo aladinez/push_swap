@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 12:14:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/24 16:55:13 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 22:16:25 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int		f_u_moul(char **save, char **line, int fd, char **buf)
 	return (0);
 }
 
-size_t	ft_strlen(const char *tab)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *tab)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (tab[i])
+// 		i++;
+// 	return (i);
+// }
 
 int		get_next_line(int fd, char **line)
 {

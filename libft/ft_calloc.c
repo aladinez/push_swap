@@ -15,9 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*tab;
-	size_t	i;
 
-	i = 0;
 	if (size == 0)
 	{
 		if ((tab = malloc(1)) == NULL)
