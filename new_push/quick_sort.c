@@ -6,7 +6,7 @@
 /*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 23:37:29 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/29 00:32:54 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		is_chunk_sorted(t_data data, int start, int end)
 	return (1);
 }
 
-int    push_chunk(t_chunk **head, int start, int end)
+int    push_chunk(t_chunk **head, int start, int end, int i)
 {
     t_chunk *new_chunk;
 
@@ -55,8 +55,10 @@ int    push_chunk(t_chunk **head, int start, int end)
 		return (ERROR);
     new_chunk->index[0] = start;
     new_chunk->index[1] = end;
-    new_chunk->status = UNSORTED;
-
+	if (i == SORTED)
+   		new_chunk->status = SORTED;
+	else
+   		new_chunk->status = UNSORTED;
 	new_chunk->next = *head;
 	*head = new_chunk;
 	
@@ -67,7 +69,7 @@ int    initialise_chunks(t_data data, t_chunk **a, t_chunk **b)
 {
     *b = NULL;
 	*a = NULL;
-    if (!(push_chunk(a, 0, data.size)))
+    if (!(push_chunk(a, 0, data.size, UNSORTED)))
 		return (ERROR);
 	// while (a)
 	// {
@@ -132,12 +134,14 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	end = (*a)->index[1] - 1;
 	size = end - start; // size , max num of operations we will do
 	pivot = pick_pivot(*data, start, end);
+	int i = UNSORTED;
 	if (end - start == 1)
 	{
 		if (data->stack[start] < data->stack[start + 1])
 			sb_(data);
 		pa_(data);
 		pa_(data);
+		i = SORTED;
 		start += 2;
 		if ((*a)->next)
 		{
@@ -151,11 +155,12 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 			*a = NULL;
 		}
 		/// todo: free chunk
-		return ;
 	}
 	else if (end - start == 0)
 	{	
 		pa_(data);
+		i = SORTED;
+		(*a)->status = SORTED;
 		start++;
 
 		if ((*a)->next)
@@ -219,7 +224,7 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	if (*a)
 		(*a)->index[0] = start;
 	if (*b)
-		push_chunk(b, (*b)->index[1], data->b_index);
+		push_chunk(b, (*b)->index[1], data->b_index, i);
 	// else
 	// 	push_chunk(b, data->b_index, data->size);
 }
@@ -235,10 +240,12 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	end = (*a)->index[1] - 1;
 	size = end - start + 1; // size , max num of operations we will do
 	pivot = pick_pivot(*data, start, end);
+	int i = UNSORTED;
 	if (end - start == 1)
 	{
 		sa_(data);
-		return ;
+		i = SORTED;
+		// return ;
 	}
 	// printf("| 0 | 1 | 2 | 3 | 4 | 5 |\n");
 	// int i = 0;
@@ -295,10 +302,11 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	}
 		
 	(*a)->index[1] = end + 1;
+	
 	if (*b)
-		push_chunk(b, data->b_index, (*b)->index[0] );
+		push_chunk(b, data->b_index, (*b)->index[0], i);
 	else
-		push_chunk(b, data->b_index, data->size);
+		push_chunk(b, data->b_index, data->size, i);
 	
 
 	// --- 
@@ -332,19 +340,30 @@ int quick_sort(t_data *data)
 
     while (1)
     {
-        if (is_chunk_sorted(*data, A_chunks->index[0], A_chunks->index[1]) && !B_chunks)
+        // if (is_chunk_sorted(*data, A_chunks->index[0], A_chunks->index[1]) && !B_chunks)
+        if (A_chunks->status == SORTED && !B_chunks)
             break ;
-        else if (is_chunk_sorted(*data, A_chunks->index[0], A_chunks->index[1]))
+        // else if (is_chunk_sorted(*data, A_chunks->index[0], A_chunks->index[1]))
+        else if (A_chunks->status == SORTED)
         {
+			if (A_chunks)
+				printf("A ==> index[0] = %d --- index[1] = %d \n",  A_chunks->index[0], A_chunks->index[1]);
+			if (B_chunks)
+				printf("B ==> index[0] = %d --- index[1] = %d \n",  B_chunks->index[0], B_chunks->index[1]);
             b_to_a(data, &B_chunks, &A_chunks);
         }
         else
         {
+			if (A_chunks)
+				printf("A ==> index[0] = %d --- index[1] = %d \n",  A_chunks->index[0], A_chunks->index[1]);
+			if (B_chunks)
+				printf("B ==> index[0] = %d --- index[1] = %d \n",  B_chunks->index[0], B_chunks->index[1]);
             a_to_b(data, &A_chunks, &B_chunks);
         }
-		print_A(*data);
-		print_B(*data);
+		// print_A(*data);
+		// print_B(*data);
 		print_stack(*data);
+		sleep(3);
 		
     }
 	// 
@@ -355,3 +374,6 @@ int quick_sort(t_data *data)
 }
 
 // errorrrr ./a.out 6 5 4 8 9 7 1 2 3 0 
+
+
+// last error : ./a.out 6 5 4 8 9 3 -8 0 7 1 2  --> see screenshot

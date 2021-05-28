@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap1.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 20:10:09 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/29 00:13:32 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rrr_(t_data *data);
 int		quick_sort(t_data *data);
 int		is_chunk_sorted(t_data data, int start, int end);
 int		initialise_chunks(t_data data, t_chunk **a, t_chunk **b);
-int		push_chunk(t_chunk **head, int start, int end);
+int		push_chunk(t_chunk **head, int start, int end, int i);
 int		*copyAndSort(t_data *data);
 void	sort_arr(int *arr, int size);
 int		pick_pivot(t_data data, int start, int end);
