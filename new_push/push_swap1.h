@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap1.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/27 21:53:31 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/28 13:59:49 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data {
 
 typedef struct s_chunk {
 	int index[2];
-	int	is_sorted;
+	int	status;
 	struct s_chunk *next;
 }t_chunk;
 
@@ -66,6 +66,8 @@ void	rrr_(t_data *data);
 
 void	quick_sort(t_data *data);
 int		is_chunk_sorted(t_data data, int start, int end);
+void    initialise_chunks(t_data data, t_chunk *a, t_chunk *b);
+void    push_chunk(t_chunk **head, int start, int end);
 
 void	print_stack(t_data data);
 

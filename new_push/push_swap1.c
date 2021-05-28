@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/26 20:52:33 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 14:01:48 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	data.b_index = data.size;
+	quick_sort(&data);
 	
 
 	// print_stack(data);
@@ -181,41 +182,6 @@ int main(int argc, char **argv)
 	// print_A(data);
 	// print_B(data);
 	
-	pb_(&data);
-	pb_(&data);
-	pb_(&data);
-
-	
-	print_stack(data);
-	print_A(data);
-	print_B(data);
-	
-	rr_(&data);
-	
-	print_stack(data);
-	print_A(data);
-	print_B(data);
-	
-	rr_(&data);
-	
-	print_stack(data);
-	print_A(data);
-	print_B(data);
-
-	
-	rrr_(&data);
-	
-	print_stack(data);
-	print_A(data);
-	print_B(data);
-	
-	rrr_(&data);
-
-	
-	print_stack(data);
-	print_A(data);
-	print_B(data);
-
 
 
 	
