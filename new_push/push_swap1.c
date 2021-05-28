@@ -6,7 +6,7 @@
 /*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 21:53:46 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/28 23:41:39 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void	print_stack(t_data data)
 	int i;
 
 	i = 0;
-	printf ("\n-----------------------------------\n");
+	printf ("\n--\n");
 	while (i < data.b_index)
 	{
 		printf("| %d ", data.stack[i]);
@@ -212,8 +212,9 @@ void	print_stack(t_data data)
 		printf("| %d ", data.stack[i]);
 		i++;
 	}
-	printf ("|\n----------------------------------\n");
+	printf ("|\n-\n");
 
 }
 
 // gcc push_swap1.c ../libft/libft.a  operations1.c
+// ./a.out 6 5 4 8 9 7 1 2 3 0 -9 -4 -6 78 19     // 6 and 5 are not sorted

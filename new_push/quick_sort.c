@@ -6,7 +6,7 @@
 /*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 23:25:36 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/28 23:37:29 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	pivot = pick_pivot(*data, start, end);
 	if (end - start == 1)
 	{
-		printf("start val : %d ---- end : %d\n", data->stack[start], data->stack[start + 1]);
 		if (data->stack[start] < data->stack[start + 1])
 			sb_(data);
 		pa_(data);
