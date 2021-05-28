@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 13:59:49 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:23:39 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 #define SORTED 1
 #define UNSORTED 0
+#define ERROR 0
+#define	SUCCESS 1
 
 
 typedef struct s_data {
@@ -64,10 +66,13 @@ void	rrb_(t_data *data);
 void	rrr_(t_data *data);
 
 
-void	quick_sort(t_data *data);
+int		quick_sort(t_data *data);
 int		is_chunk_sorted(t_data data, int start, int end);
-void    initialise_chunks(t_data data, t_chunk *a, t_chunk *b);
-void    push_chunk(t_chunk **head, int start, int end);
+int		initialise_chunks(t_data data, t_chunk **a, t_chunk **b);
+int		push_chunk(t_chunk **head, int start, int end);
+int		*copyAndSort(t_data *data);
+void	sort_arr(int *arr, int size);
+
 
 void	print_stack(t_data data);
 

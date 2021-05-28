@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 14:01:48 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 15:53:35 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,8 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	data.b_index = data.size;
-	quick_sort(&data);
+	if (!quick_sort(&data))
+		ft_putstr_fd("FAILED", 2);
 	
 
 	// print_stack(data);
