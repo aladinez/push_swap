@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 20:37:48 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/28 21:31:59 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,25 +128,55 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	int size;
 	int start;
 	int end;
+	t_chunk *tmp;
 
 	start = (*a)->index[0];
 	end = (*a)->index[1] - 1;
-	size = end - start + 1; // size , max num of operations we will do
+	size = end - start; // size , max num of operations we will do
 	pivot = pick_pivot(*data, start, end);
-	if (end - start == 2)
+	if (end - start == 1)
 	{
 		if ((*a)->index[start] < (*a)->index[start + 1])
 			sb_(data);
 		pa_(data);
 		pa_(data);
-		
+		start += 2;
+		if ((*a)->next)
+		{
+			tmp = *a;
+			*a = (*a)->next;
+			free(tmp);
+			tmp = NULL;
+		}
+		else{
+			free(*a);
+			*a = NULL;
+		}
+		/// todo: free chunk
 		return ;
 	}
-	while (--size)
-	{
-		if (data->stack[start] <= pivot && data->stack[end] <= pivot)
+	else if (end - start == 0)
+	{	
+		pa_(data);
+		start++;
+
+		if ((*a)->next)
 		{
-			if (data->stack[start] < data->stack[end])
+			tmp = *a;
+			*a = (*a)->next;
+			free(tmp);
+			tmp = NULL;
+		}
+		else{
+			free(*a);
+			*a = NULL;
+		}
+	}
+	while (size)
+	{
+		if (data->stack[start] >= pivot && data->stack[end] >= pivot)
+		{
+			if (data->stack[start] > data->stack[end])
 			{
 				pa_(data);
 				start++;
@@ -158,12 +188,12 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 				start++;
 			}
 		}
-		else if (data->stack[start] <= pivot)
+		else if (data->stack[start] >= pivot)
 		{
 			pa_(data);
 			start++;
 		}
-		else if (data->stack[end] <= pivot)
+		else if (data->stack[end] >= pivot)
 		{
 			rrb_(data);
 			pa_(data);
@@ -171,6 +201,12 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 		}
 		else
 			rb_(data);
+		size--;
+
+		
+		// print_A(*data);
+		// print_B(*data);
+		// print_stack(*data);
 	}
 	(*a)->index[0] = start;
 	if (*b)
@@ -190,7 +226,7 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	end = (*a)->index[1] - 1;
 	size = end - start + 1; // size , max num of operations we will do
 	pivot = pick_pivot(*data, start, end);
-	if (end - start == 2)
+	if (end - start == 1)
 	{
 		sa_(data);
 		return ;
@@ -207,7 +243,7 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	{
 		if (data->stack[start] <= pivot && data->stack[end] <= pivot)
 		{
-			if (data->stack[start] < data->stack[end])
+			if (data->stack[end] < data->stack[start])
 			{
 				pb_(data);
 				end--;	
@@ -219,12 +255,12 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 				end--;
 			}
 		}
-		else if (data->stack[start] <= pivot)
+		else if (data->stack[end] <= pivot)
 		{
 			pb_(data);
 			end--;
 		}
-		else if (data->stack[end] <= pivot)
+		else if (data->stack[start] <= pivot)
 		{
 			rra_(data);
 			pb_(data);
@@ -232,6 +268,10 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 		}
 		else
 			ra_(data);
+			
+		// print_A(*data);
+		// print_B(*data);
+		// print_stack(*data);
 	}
 	(*a)->index[1] = end + 1;
 	if (*b)
@@ -241,15 +281,19 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	
 
 	// --- 
-	i = 0;
-	while (i < data->size)
-	{
-		printf("%d -> ", data->stack[i]);
-		// printf("index[0] = %d\nindex[1] = %d\nstatus = %d\nPIVOT : %D\n\n", A_chunks->index[0], A_chunks->index[1], A_chunks->status, pivot);
-		i++;
-	}
-	printf("\n");
+	// i = 0;
+	// while (i < data->size)
+	// {
+	// 	printf("%d -> ", data->stack[i]);
+	// 	// printf("index[0] = %d\nindex[1] = %d\nstatus = %d\nPIVOT : %D\n\n", A_chunks->index[0], A_chunks->index[1], A_chunks->status, pivot);
+	// 	i++;
+	// }
+	// printf("\n");
 	// ---
+	// print_A(*data);
+	// print_B(*data);
+	// print_stack(*data);
+
 }
 
 int quick_sort(t_data *data)
@@ -277,9 +321,12 @@ int quick_sort(t_data *data)
         {
             a_to_b(data, &A_chunks, &B_chunks);
         }
+		print_A(*data);
+		print_B(*data);
+		print_stack(*data);
 		
     }
-
+	// 
 	
 	
 	return (SUCCESS);
