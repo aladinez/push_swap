@@ -6,13 +6,13 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/29 18:32:33 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/29 19:53:31 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap1.h"
 
-int		pick_pivot(t_data data, int start, int end)
+int		pick_pivot(t_data data, int start, int end, int *push_num)
 {
 	int i;
 	int size;
@@ -30,6 +30,11 @@ int		pick_pivot(t_data data, int start, int end)
 	}
 	sort_arr(arr, size);
 	i = arr[(size / 2)];
+	*push_num = size / 2;
+	// if (size % 2 == 0)
+	// 	*push_num = size / 2;
+	// else
+	// 	*push_num = (size / 2) + 1;
 	free(arr);
 	return (i);
 }
@@ -162,9 +167,9 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	}
 	else {
 		int i = 0;
-		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1]);
+		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
 		// size = end - start; // size , max num of operations we will do
-		size = (*a)->index[1] - (*a)->index[0];
+		// size = (*a)->index[1] - (*a)->index[0];
 		while (size)
 		{
 			if (!(*a)->next && data->stack[start] > pivot && data->stack[end] > pivot)
@@ -173,12 +178,14 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 				{
 					pa_(data);
 					start++;
+					size--;
 				}
 				else
 				{
 					rrb_(data);
 					pa_(data);
 					start++;
+					size--;
 				}
 			}
 			else if (!(*a)->next && data->stack[end] > pivot)
@@ -186,20 +193,22 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 				rrb_(data);
 				pa_(data);
 				start++;
+				size--;
 			}
-			if (data->stack[start] > pivot)
+			else if (data->stack[start] > pivot)
 			{
 				pa_(data);
 				start++;
+				size--;
 			}
 			else
 			{
 				rb_(data);
 				i++;
 			}
-			size--;
+			// size--;
 		}
-		while ((i--))
+		while ((*a)->next && (i--))
 			rrb_(data);
 	}
 	if (*a)
@@ -233,9 +242,9 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	else
 	{
 		int i = 0;
-		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1]);	
+		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1], &size);	
 		// size = end - start + 1; // size , max num of operations we will do
-		size = (*a)->index[1] - (*a)->index[0];
+		// size = (*a)->index[1] - (*a)->index[0];
 		while (size)
 		{
 			if (!(*a)->next && data->stack[start] < pivot && data->stack[end] < pivot)
@@ -244,12 +253,15 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 				{
 					pb_(data);
 					end--;	
+					size--;
+	
 				}
 				else
 				{
 					rra_(data);
 					pb_(data);
 					end--;
+					size--;
 				}
 			}
 			else if (!(*a)->next && data->stack[start] < pivot)
@@ -257,20 +269,24 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 				rra_(data);
 				pb_(data);
 				end--;
+				size--;
 			}
-			if (data->stack[end] < pivot)
+			else if (data->stack[end] < pivot)
 			{
 				pb_(data);
 				end--;
+				size--;
+
 			}
 			else
 			{
 				ra_(data);
+				// printf("AAA\n");
 				i++;
 			}
-			size--;
+			// size--;
 		}
-		while ((i--))
+		while ((*a)->next && (i--))
 			rra_(data);
 	}
 	(*a)->index[1] = end + 1;
@@ -301,8 +317,8 @@ int quick_sort(t_data *data)
         {
             a_to_b(data, &A_chunks, &B_chunks);
         }
+	print_stack(*data);
     }
-	// print_stack(*data);
 	return (SUCCESS);
 
 }
