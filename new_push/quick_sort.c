@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/29 19:53:31 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/29 22:19:36 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap1.h"
+
+int		pick_B_pivot(t_data data, int start, int end, int *push_num)
+{
+	int i;
+	int size;
+	int *arr;
+	
+	if (start == end)
+		return (data.stack[start]);
+	size = end - start;
+	arr = (int *)malloc(size * sizeof(int));
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = data.stack[start + i];
+		i++;
+	}
+	sort_arr(arr, size);
+	i = arr[(size / 2)];
+	if (size % 2 == 0)
+		*push_num = size / 2 - 1;
+	else
+		*push_num = size / 2;
+	free(arr);
+	return (i);
+}
 
 int		pick_pivot(t_data data, int start, int end, int *push_num)
 {
@@ -29,8 +55,16 @@ int		pick_pivot(t_data data, int start, int end, int *push_num)
 		i++;
 	}
 	sort_arr(arr, size);
+	// i = 0;
+	// while (i < size)
+	// {
+	// 	printf("| %d", arr[i]);
+	// 	i++;
+	// }
+	// printf("\n");
 	i = arr[(size / 2)];
 	*push_num = size / 2;
+	// printf("size = %d ---- push_num= %d\n", size, *push_num);
 	// if (size % 2 == 0)
 	// 	*push_num = size / 2;
 	// else
@@ -90,7 +124,7 @@ void	sort_arr(int *arr, int size)
 		j = 0;
 		while (j < size - i - 1)
 		{
-			if (arr[j] < arr[j + 1])
+			if (arr[j] > arr[j + 1])
 				swap(&arr[j], &arr[j + 1]);
 			j++;
 		}
@@ -167,7 +201,7 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	}
 	else {
 		int i = 0;
-		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
+		pivot = pick_B_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
 		// size = end - start; // size , max num of operations we will do
 		// size = (*a)->index[1] - (*a)->index[0];
 		while (size)
@@ -242,7 +276,9 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	else
 	{
 		int i = 0;
-		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1], &size);	
+		pivot = pick_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
+		// printf("INDE[0] = %d --INDE[1] = %d\npivot : %d\nsize = %d\n", (*a)->index[0], (*a)->index[1], pivot, size);	
+		// sleep(5);
 		// size = end - start + 1; // size , max num of operations we will do
 		// size = (*a)->index[1] - (*a)->index[0];
 		while (size)
@@ -317,7 +353,8 @@ int quick_sort(t_data *data)
         {
             a_to_b(data, &A_chunks, &B_chunks);
         }
-	print_stack(*data);
+	// print_stack(*data);
+	// sleep(5);
     }
 	return (SUCCESS);
 
