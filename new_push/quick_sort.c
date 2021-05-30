@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 13:59:57 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 14:54:10 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,36 @@ int		*copyAndSort(t_data *data)
 	sort_arr(dst, data->size);
 	return (dst);
 }
+void	delete_chunk(t_chunk **a)
+{
+	t_chunk *tmp;
+	
+	if ((*a)->next)
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		free(tmp);
+		tmp = NULL;
+	}
+	else
+	{
+		free(*a);
+		*a = NULL;
+	}
+}
+
+void	free_chunks(t_chunk **a)
+{
+	t_chunk *tmp;
+	
+	while ((*a))
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		free(tmp);
+		tmp = NULL;
+	}
+}
 
 void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 {
@@ -156,7 +186,7 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	int size;
 	int start;
 	int end;
-	t_chunk *tmp;
+	// t_chunk *tmp;
 
 	start = (*a)->index[0];
 	end = (*a)->index[1] - 1;
@@ -169,34 +199,36 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 		pa_(data, 1);
 		i = SORTED;
 		start += 2;
-		if ((*a)->next)
-		{
-			tmp = *a;
-			*a = (*a)->next;
-			free(tmp);
-			tmp = NULL;
-		}
-		else{
-			free(*a);
-			*a = NULL;
-		}
+		delete_chunk(a);
+		// if ((*a)->next)
+		// {
+		// 	tmp = *a;
+		// 	*a = (*a)->next;
+		// 	free(tmp);
+		// 	tmp = NULL;
+		// }
+		// else{
+		// 	free(*a);
+		// 	*a = NULL;
+		// }
 	}
 	else if (end - start == 0)
 	{	
 		pa_(data, 1);
 		start++;
 		push_chunk(b, (*b)->index[1], data->b_index, SORTED);
-		if ((*a)->next)
-		{
-			tmp = *a;
-			*a = (*a)->next;
-			free(tmp);
-			tmp = NULL;
-		}
-		else{
-			free(*a);
-			*a = NULL;
-		}
+		delete_chunk(a);
+		// if ((*a)->next)
+		// {
+		// 	tmp = *a;
+		// 	*a = (*a)->next;
+		// 	free(tmp);
+		// 	tmp = NULL;
+		// }
+		// else{
+		// 	free(*a);
+		// 	*a = NULL;
+		// }
 		return ;
 	}
 	else {
@@ -336,10 +368,7 @@ int quick_sort(t_data *data)
 {
     t_chunk *A_chunks;
     t_chunk *B_chunks;
-	// int		*sorted_stack;
-
-    // if (!initialise_chunks(*data, &A_chunks, &B_chunks) ||
-	// 	!(sorted_stack = copyAndSort(data)))
+	
 	if (!initialise_chunks(*data, &A_chunks, &B_chunks))
 		return (ERROR);
     while (1)
@@ -351,6 +380,7 @@ int quick_sort(t_data *data)
         else
             a_to_b(data, &A_chunks, &B_chunks);
     }
+	free_chunks(&A_chunks);
 	return (SUCCESS);
 }
 

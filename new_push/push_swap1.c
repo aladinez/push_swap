@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 13:59:46 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 14:59:36 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,27 +125,20 @@ int main(int argc, char **argv)
 	data.size = 0;
 	data.stack = NULL;
 	if (argc == 1 || (argc == 2 && is_number(argv[1])))
-	{
-		ft_putstr_fd("0 instructions\n", 2);
 		return (0);
-	}
-	// else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0) // passing data to checkargs
-	else if (check_args((argv + 1), &data) < 0) // passing data to checkargs
+	else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0)
 	{
-		ft_putstr_fd("ERRORR\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
 	if (is_A_sorted(data))
 	{
-		ft_putstr_fd("sorted\n", 2);
 		free(data.stack);
 		return (0);
 	}
 	data.b_index = data.size;
 	if (!quick_sort(&data))
-		ft_putstr_fd("FAILED", 2);
-	while (1)
-		;
+		free(data.stack);	
 	return (0);
 }
 

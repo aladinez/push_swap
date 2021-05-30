@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/29 19:06:14 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 14:50:16 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_chunk {
 
 int		is_number(char *str);
 int		is_dupp(t_data *data);
-void	print_A(t_data data);
-void	print_B(t_data data);
 int		check_args(char **str, t_data *data);
 void	num_join(t_data *data, int num);
 void	free_data(t_data *data);
