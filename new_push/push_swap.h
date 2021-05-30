@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 19:05:59 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 20:01:20 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,11 @@ int		pick_pivot(t_data data, int start, int end, int *push_num);
 int		is_chunk_sorted(t_data data, int start, int end);
 void	delete_chunk(t_chunk **a);
 void	free_chunks(t_chunk **a);
+long	ft_atoi(const char *str);
+int		count_num(char str, long *num, long max, long sign);
+int		ft_isdigit(int c);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+size_t	ft_strlen(const char *s);
 
 #endif
