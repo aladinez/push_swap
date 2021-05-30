@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:19:21 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 19:07:14 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:06:57 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	run_instruction(char *str, t_data *data)
 {
-	if (!strcmp(str, "sa"))
+	if (!my_strcmp(str, "sa"))
 		sa_(data, 0);
-	else if (!strcmp(str, "sb"))
+	else if (!my_strcmp(str, "sb"))
 		sb_(data, 0);
-	else if (!strcmp(str, "ss"))
+	else if (!my_strcmp(str, "ss"))
 		ss_(data, 0);
-	else if (!strcmp(str, "pa"))
+	else if (!my_strcmp(str, "pa"))
 		pa_(data, 0);
-	else if (!strcmp(str, "pb"))
+	else if (!my_strcmp(str, "pb"))
 		pb_(data, 0);
-	else if (!strcmp(str, "ra"))
+	else if (!my_strcmp(str, "ra"))
 		ra_(data, 0);
-	else if (!strcmp(str, "rb"))
+	else if (!my_strcmp(str, "rb"))
 		rb_(data, 0);
-	else if (!strcmp(str, "rr"))
+	else if (!my_strcmp(str, "rr"))
 		rr_(data, 0);
-	else if (!strcmp(str, "rra"))
+	else if (!my_strcmp(str, "rra"))
 		rra_(data, 0);
-	else if (!strcmp(str, "rrb"))
+	else if (!my_strcmp(str, "rrb"))
 		rrb_(data, 0);
-	else if (!strcmp(str, "rrr"))
+	else if (!my_strcmp(str, "rrr"))
 		rrr_(data, 0);
 	else
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 20:01:20 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:42:08 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
 
 typedef struct s_data {
@@ -60,7 +59,6 @@ int		quick_sort(t_data *data);
 int		is_chunk_sorted(t_data data, int start, int end);
 int		initialise_chunks(t_data data, t_chunk **a, t_chunk **b);
 int		push_chunk(t_chunk **head, int start, int end, int i);
-int		*copyAndSort(t_data *data);
 void	sort_arr(int *arr, int size);
 void	a_to_b(t_data *data, t_chunk **a, t_chunk **b);
 void	b_to_a(t_data *data, t_chunk **a, t_chunk **b);
@@ -79,5 +77,7 @@ int		ft_isdigit(int c);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 size_t	ft_strlen(const char *s);
+int		sort_three(t_data *data);
+int		*copyandsort(t_data *data);
 
 #endif
