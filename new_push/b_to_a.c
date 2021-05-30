@@ -6,78 +6,25 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 16:57:46 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 17:05:29 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 17:54:31 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap1.h"
 
-// int	run_btoa_inst(t_data *data, t_chunk **a, int start, int end)
-// {
-// 	int		i;
-// 	int		size;
-
-	
-// }
-
-void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
+int	run_btoa_inst(t_data *data, t_chunk **a, int start, int end)
 {
-	int pivot;
-	int size;
-	int start;
-	int end;
-	// t_chunk *tmp;
+	int		i;
+	int		size;
 
-	start = (*a)->index[0];
-	end = (*a)->index[1] - 1;
-	int i = UNSORTED;
-	if (end - start == 1)
+	i = 0;
+	data->pivot = pick_B_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
+	
+	while (size)
 	{
-		if (data->stack[start] < data->stack[start + 1])
-			sb_(data, 1);
-		pa_(data, 1);
-		pa_(data, 1);
-		i = SORTED;
-		start += 2;
-		delete_chunk(a);
-	}
-	else if (end - start == 0)
-	{	
-		pa_(data, 1);
-		start++;
-		push_chunk(b, (*b)->index[1], data->b_index, SORTED);
-		delete_chunk(a);
-		return ;
-	}
-	else {
-		int i = 0;
-		pivot = pick_B_pivot(*data, (*a)->index[0], (*a)->index[1], &size);
-		while (size)
+		if (!(*a)->next && data->stack[start] > data->pivot && data->stack[end] > data->pivot)
 		{
-			if (!(*a)->next && data->stack[start] > pivot && data->stack[end] > pivot)
-			{
-				if (data->stack[start] > data->stack[end])
-				{
-					pa_(data, 1);
-					start++;
-					size--;
-				}
-				else
-				{
-					rrb_(data, 1);
-					pa_(data, 1);
-					start++;
-					size--;
-				}
-			}
-			else if (!(*a)->next && data->stack[end] > pivot)
-			{
-				rrb_(data, 1);
-				pa_(data, 1);
-				start++;
-				size--;
-			}
-			else if (data->stack[start] > pivot)
+			if (data->stack[start] > data->stack[end])
 			{
 				pa_(data, 1);
 				start++;
@@ -85,16 +32,63 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 			}
 			else
 			{
-				rb_(data, 1);
-				i++;
+				rrb_(data, 1);
+				pa_(data, 1);
+				start++;
+				size--;
 			}
-			// size--;
 		}
-		while ((*a)->next && (i--))
+		else if (!(*a)->next && data->stack[end] > data->pivot)
+		{
 			rrb_(data, 1);
+			pa_(data, 1);
+			start++;
+			size--;
+		}
+		else if (data->stack[start] > data->pivot)
+		{
+			pa_(data, 1);
+			start++;
+			size--;
+		}
+		else
+		{
+			rb_(data, 1);
+			i++;
+		}
+		// size--;
 	}
-	if (*a)
-		(*a)->index[0] = start;
-	if (*b)
-		push_chunk(b, (*b)->index[1], data->b_index, i);
+	while ((*a)->next && (i--))
+		rrb_(data, 1);
+	
+	return (start);
+}
+
+void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
+{
+	int	i;
+
+	i = UNSORTED;
+	if ((*a)->index[1] - (*a)->index[0] == 2)
+	{
+		if (data->stack[(*a)->index[0]] < data->stack[(*a)->index[0] + 1])
+			sb_(data, 1);
+		pa_(data, 1);
+		pa_(data, 1);
+		i = SORTED;
+		(*a)->index[0] += 2;
+		delete_chunk(a);
+	}
+	else if ((*a)->index[1] - (*a)->index[0] == 1)
+	{	
+		pa_(data, 1);
+		(*a)->index[0] += 1;
+		push_chunk(b, (*b)->index[1], data->b_index, SORTED);
+		delete_chunk(a);
+		return ;
+	}
+	else
+		(*a)->index[0] = run_btoa_inst(data, a, (*a)->index[0],
+				(*a)->index[1] - 1);
+	push_chunk(b, (*b)->index[1], data->b_index, i);
 }

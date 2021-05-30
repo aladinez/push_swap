@@ -8,8 +8,8 @@
 			"name": "Launch",
 			"type": "lldb",
 			"request": "launch",
-			"program": "${workspaceFolder}/new_push/push_swap",
-			"args": ["1", "2", "5", "3"],
+			"program": "${workspaceFolder}/new_push/alaeeee",
+			"args": ["1", "2", "5", "3", "11", "22", "51", "13"],
 			"cwd": "${workspaceFolder}/new_push/"
 		}
 	]
