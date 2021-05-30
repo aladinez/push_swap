@@ -6,13 +6,13 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:42:29 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 16:56:11 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:03:58 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap1.h"
 
-void	check_sides(t_data *data, int *start, int *end, int *size)
+void	check_a_sides(t_data *data, int *start, int *end, int *size)
 {
 	if (data->stack[*start] < data->pivot && data->stack[*end] < data->pivot)
 	{
@@ -49,7 +49,7 @@ int	run_atob_inst(t_data *data, t_chunk **a, int start, int end)
 	while (size)
 	{
 		if (!(*a)->next && data->stack[start] < data->pivot)
-			check_sides(data, &start, &end, &size);
+			check_a_sides(data, &start, &end, &size);
 		else if (data->stack[end] < data->pivot)
 		{
 			pb_(data, 1);
