@@ -6,11 +6,11 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:42:29 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 18:03:58 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 19:07:07 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap1.h"
+#include "push_swap.h"
 
 void	check_a_sides(t_data *data, int *start, int *end, int *size)
 {

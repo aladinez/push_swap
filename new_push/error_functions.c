@@ -6,11 +6,11 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:16:06 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 15:57:39 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 19:07:20 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap1.h"
+#include "push_swap.h"
 
 	/*
 	** check if there is a dupplicated num, and frees the stack if TRUE.

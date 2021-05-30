@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   checker_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:19:21 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 15:20:18 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 19:07:14 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap1.h"
+#include "push_swap.h"
 
-int		run_instruction(char *str, t_data *data)
+int	run_instruction(char *str, t_data *data)
 {
 	if (!strcmp(str, "sa"))
 		sa_(data, 0);
@@ -37,16 +37,13 @@ int		run_instruction(char *str, t_data *data)
 	else if (!strcmp(str, "rrr"))
 		rrr_(data, 0);
 	else
-	{
-		ft_putstr_fd("Error\n", 2);
 		return (1);
-	}
 	return (0);
 }
 
-int		my_strcmp(char *str1, char *str2)
+int	my_strcmp(char *str1, char *str2)
 {
-	int i;
+	int	i;
 
 	if (ft_strlen(str1) != ft_strlen(str2))
 		return (1);
@@ -58,7 +55,6 @@ int		my_strcmp(char *str1, char *str2)
 		i++;
 	}
 	return (0);
-	
 }
 
 void	my_free(t_data *data, char **line)

@@ -6,13 +6,11 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 15:22:54 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 19:06:30 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap1.h"
-
-
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
