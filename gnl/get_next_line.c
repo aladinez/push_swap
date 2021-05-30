@@ -6,14 +6,14 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 16:27:20 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 16:27:38 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:33:51 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s, char c)
+char	*my_strjoin(char *s, char c)
 {
 	int		i;
 	char	*str;
@@ -48,7 +48,7 @@ int			get_next_line(char **line)
 	{
 		if (buffer[0] == '\n')
 			break ;
-		*line = ft_strjoin(*line, buffer[0]);
+		*line = my_strjoin(*line, buffer[0]);
 	}
 	free(buffer);
 	return (flag);

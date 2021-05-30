@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap1111.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:08:02 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/25 19:15:14 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 19:22:53 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,4 @@ int main(int argc, char **argv)
 	// 	;
 	return (0);
 }
+// gcc -Wextra -Werror -Wall ../libft/*.c push_swap.c quick_sort.c operations1.c operations2.c operations3.c sort_tools.c sort_tools2.c a_to_b.c b_to_a.c error_functions.c

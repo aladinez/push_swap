@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parmarti <parmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 14:59:42 by parmarti          #+#    #+#             */
-/*   Updated: 2020/08/05 20:48:25 by parmarti         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:34:18 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <stdlib.h>
 
 int	get_next_line(char **line);
+char	*my_strjoin(char *s, char c);
 
 #endif
