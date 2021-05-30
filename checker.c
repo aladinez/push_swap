@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 19:07:02 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/25 19:07:03 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:35:48 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ int main(int argc, char **argv)
 		free(line);
 	}
 	//--------------- IDK WHY ------------
-	// if (line[0])
-	// {
-	// 	ft_putstr_fd("Error\n", 2);
-	// 	return (0);
-	// }
-	free(line);
+	if (line[0])
+	{
+		ft_putstr_fd("Error\n", 2);
+		free(line);
+		return (0);
+	}
 	if (is_sorted(stack_a) && !stack_b)
 		ft_putstr_fd("OK\n", 1);
 	else

@@ -17,7 +17,7 @@ int		my_strcmp(char *str1, char *str2)
 	
 }
 
-int	run_instruction(char *str, t_data *data)
+int		run_instruction(char *str, t_data *data)
 {
 	if (!strcmp(str, "sa"))
 		sa_(data, 0);
@@ -43,16 +43,21 @@ int	run_instruction(char *str, t_data *data)
 		rrr_(data, 0);
 	else
 	{
-		ft_putstr_fd("Error from check_instruction\n", 2);
-
+		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
 	return (0);
 }
 
-int main(int argc, char **argv)
+void	my_free(t_data *data, char **line)
 {
-	// t_stack *stack_a;
+	free_data(data);
+	if (*line)
+		free(*line);
+}
+
+int		main(int argc, char **argv)
+{
 	t_data	data;
     char	*line;
 	int		ret;
@@ -63,30 +68,31 @@ int main(int argc, char **argv)
 		return (0);
 	else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0) // passing data to checkargs
 	{
-		ft_putstr_fd("ERROR\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
     data.b_index = data.size;
-
-    line = NULL;
     while ((ret = get_next_line(&line)) > 0)
 	{
 		if (run_instruction(line, &data))
 		{
-			free(line);
+			my_free(&data, &line);
 			return (0);
 		}
 		free(line);
 	}
-    if (is_A_sorted(data))
+	if (line[0])
 	{
-		ft_putstr_fd("OK\n", 2);
-		free(data.stack);
+		ft_putstr_fd("Error\n", 2);
+		my_free(&data, &line);
 		return (0);
 	}
+    if (is_A_sorted(data))
+		ft_putstr_fd("OK\n", 2);
     else
 		ft_putstr_fd("KO\n", 2);
-    print_stack(data);
-
+	my_free(&data, &line);
 	return (0);
 }
+
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 13:36:28 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 23:41:39 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/30 13:59:46 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_data(t_data *data)
 	if (data)
 	{
 		free(data->stack);
-		// free(data);
 	}
 }
 
@@ -99,41 +98,11 @@ int		check_args(char **str, t_data *data)
 		if (check_num > 2147483647 || check_num < -2147483648)
 			return (-1);
 		num = (int)check_num;
-		// push_back(root, num);
 		num_join(data, num);
 		i++;
 	}
 	return (1);
 }
-
-void	print_A(t_data data)
-{
-	int		i;
-	
-	i = data.b_index - 1;
-	while(i >= 0)
-	{
-		ft_putnbr_fd(data.stack[i], 1);
-		ft_putstr_fd(" --> ", 1);
-		i--;
-	}
-	ft_putchar_fd('\n', 1);
-}
-void	print_B(t_data data)
-{
-	int		i;
-	
-	i = data.b_index;
-	while(i < data.size)
-	{
-		ft_putnbr_fd(data.stack[i], 1);
-		ft_putstr_fd(" --> ", 1);
-		i++;
-	}
-	ft_putchar_fd('\n', 1);
-}
-
-
 
 int		is_A_sorted(t_data data)
 {
@@ -142,17 +111,15 @@ int		is_A_sorted(t_data data)
 	i = 0;
 	while (i < data.size - 1)
 	{
-		// printf("root : %d | root->next : %d\n", root->data, root->next->data);
 		if (data.stack[i] < data.stack[i + 1]) 
 			return (0);
 		i++;
 	}
 	return (1);
 }
-/*
+
 int main(int argc, char **argv)
 {
-	// t_stack *stack_a;
 	t_data	data;
 	
 	data.size = 0;
@@ -162,9 +129,10 @@ int main(int argc, char **argv)
 		ft_putstr_fd("0 instructions\n", 2);
 		return (0);
 	}
-	else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0) // passing data to checkargs
+	// else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0) // passing data to checkargs
+	else if (check_args((argv + 1), &data) < 0) // passing data to checkargs
 	{
-		ft_putstr_fd("ERROR\n", 2);
+		ft_putstr_fd("ERRORR\n", 2);
 		return (0);
 	}
 	if (is_A_sorted(data))
@@ -176,25 +144,12 @@ int main(int argc, char **argv)
 	data.b_index = data.size;
 	if (!quick_sort(&data))
 		ft_putstr_fd("FAILED", 2);
-	
-
-	// print_stack(data);
-
-	// print_A(data);
-	// print_B(data);
-	
-
-
-	
-	// data.stack = NULL;
-	// while (1)
-	// 	;
-
-
+	while (1)
+		;
 	return (0);
 }
-*/
- 
+
+
 void	print_stack(t_data data)
 {
 	int i;

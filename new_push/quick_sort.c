@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/29 22:46:27 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/30 13:59:57 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,33 +331,27 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	else
 		push_chunk(b, data->b_index, data->size, i);
 }
-
+// TODO: modify copyandsort , dont have to copy
 int quick_sort(t_data *data)
 {
     t_chunk *A_chunks;
     t_chunk *B_chunks;
-	int		*sorted_stack;
+	// int		*sorted_stack;
 
-    if (!initialise_chunks(*data, &A_chunks, &B_chunks) ||
-		!(sorted_stack = copyAndSort(data)))
+    // if (!initialise_chunks(*data, &A_chunks, &B_chunks) ||
+	// 	!(sorted_stack = copyAndSort(data)))
+	if (!initialise_chunks(*data, &A_chunks, &B_chunks))
 		return (ERROR);
     while (1)
     {
         if (A_chunks->status == SORTED && !B_chunks)
             break ;
         else if (A_chunks->status == SORTED)
-        {
             b_to_a(data, &B_chunks, &A_chunks);
-        }
         else
-        {
             a_to_b(data, &A_chunks, &B_chunks);
-        }
-	// print_stack(*data);
-	// sleep(5);
     }
 	return (SUCCESS);
-
 }
 
 // errorrrr ./a.out 6 5 4 8 9 7 1 2 3 0 
