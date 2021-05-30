@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parmarti <parmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/23 12:35:40 by parmarti          #+#    #+#             */
-/*   Updated: 2020/08/05 21:03:10 by parmarti         ###   ########.fr       */
+/*   Created: 2021/05/30 16:27:20 by aez-zaou          #+#    #+#             */
+/*   Updated: 2021/05/30 16:27:38 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "get_next_line.h"
 
-static char	*ft_strjoin(char *s, char c)
+char	*ft_strjoin(char *s, char c)
 {
 	int		i;
 	char	*str;

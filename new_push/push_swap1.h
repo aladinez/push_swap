@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 14:50:16 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 16:54:02 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data {
 	int		*stack;
 	int		size;
 	int		b_index;
+	int		pivot;
 }t_data;
 
 typedef struct s_chunk {
@@ -71,12 +72,20 @@ int		initialise_chunks(t_data data, t_chunk **a, t_chunk **b);
 int		push_chunk(t_chunk **head, int start, int end, int i);
 int		*copyAndSort(t_data *data);
 void	sort_arr(int *arr, int size);
-int		pick_pivot(t_data data, int start, int end, int *push_num);
 void	a_to_b(t_data *data, t_chunk **a, t_chunk **b);
 void	b_to_a(t_data *data, t_chunk **a, t_chunk **b);
+int		run_instruction(char *str, t_data *data);
+int		my_strcmp(char *str1, char *str2);
+void	my_free(t_data *data, char **line);
 
 
-void	print_stack(t_data data);
+int	run_atob_inst(t_data *data, t_chunk **a, int start, int end);
+
+int		pick_B_pivot(t_data data, int start, int end, int *push_num);
+int		pick_pivot(t_data data, int start, int end, int *push_num);
+int		is_chunk_sorted(t_data data, int start, int end);
+void	delete_chunk(t_chunk **a);
+void	free_chunks(t_chunk **a);
 
 
 #endif
