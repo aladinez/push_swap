@@ -93,11 +93,12 @@ int main(int argc, char **argv)
 		}
 		free(line);
 	}
-	if (line[0])
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
+	//--------------- IDK WHY ------------
+	// if (line[0])
+	// {
+	// 	ft_putstr_fd("Error\n", 2);
+	// 	return (0);
+	// }
 	free(line);
 	if (is_sorted(stack_a) && !stack_b)
 		ft_putstr_fd("OK\n", 1);

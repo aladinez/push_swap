@@ -6,7 +6,7 @@
 /*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:43:38 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/29 22:19:36 by alae             ###   ########.fr       */
+/*   Updated: 2021/05/29 22:46:27 by alae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,9 +164,9 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	if (end - start == 1)
 	{
 		if (data->stack[start] < data->stack[start + 1])
-			sb_(data);
-		pa_(data);
-		pa_(data);
+			sb_(data, 1);
+		pa_(data, 1);
+		pa_(data, 1);
 		i = SORTED;
 		start += 2;
 		if ((*a)->next)
@@ -183,7 +183,7 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 	}
 	else if (end - start == 0)
 	{	
-		pa_(data);
+		pa_(data, 1);
 		start++;
 		push_chunk(b, (*b)->index[1], data->b_index, SORTED);
 		if ((*a)->next)
@@ -210,40 +210,40 @@ void	b_to_a(t_data *data, t_chunk **a, t_chunk **b)
 			{
 				if (data->stack[start] > data->stack[end])
 				{
-					pa_(data);
+					pa_(data, 1);
 					start++;
 					size--;
 				}
 				else
 				{
-					rrb_(data);
-					pa_(data);
+					rrb_(data, 1);
+					pa_(data, 1);
 					start++;
 					size--;
 				}
 			}
 			else if (!(*a)->next && data->stack[end] > pivot)
 			{
-				rrb_(data);
-				pa_(data);
+				rrb_(data, 1);
+				pa_(data, 1);
 				start++;
 				size--;
 			}
 			else if (data->stack[start] > pivot)
 			{
-				pa_(data);
+				pa_(data, 1);
 				start++;
 				size--;
 			}
 			else
 			{
-				rb_(data);
+				rb_(data, 1);
 				i++;
 			}
 			// size--;
 		}
 		while ((*a)->next && (i--))
-			rrb_(data);
+			rrb_(data, 1);
 	}
 	if (*a)
 		(*a)->index[0] = start;
@@ -264,7 +264,7 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 	if (end - start == 1)
 	{
 		if (data->stack[start] < data->stack[end])
-			sa_(data);
+			sa_(data, 1);
 		(*a)->status = 1;
 		return ;
 	}
@@ -287,43 +287,43 @@ void	a_to_b(t_data *data, t_chunk **a, t_chunk **b)
 			{
 				if (data->stack[end] < data->stack[start])
 				{
-					pb_(data);
+					pb_(data, 1);
 					end--;	
 					size--;
 	
 				}
 				else
 				{
-					rra_(data);
-					pb_(data);
+					rra_(data, 1);
+					pb_(data, 1);
 					end--;
 					size--;
 				}
 			}
 			else if (!(*a)->next && data->stack[start] < pivot)
 			{
-				rra_(data);
-				pb_(data);
+				rra_(data, 1);
+				pb_(data, 1);
 				end--;
 				size--;
 			}
 			else if (data->stack[end] < pivot)
 			{
-				pb_(data);
+				pb_(data, 1);
 				end--;
 				size--;
 
 			}
 			else
 			{
-				ra_(data);
+				ra_(data, 1);
 				// printf("AAA\n");
 				i++;
 			}
 			// size--;
 		}
 		while ((*a)->next && (i--))
-			rra_(data);
+			rra_(data, 1);
 	}
 	(*a)->index[1] = end + 1;
 	if (*b)

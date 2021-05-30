@@ -21,37 +21,43 @@ void	swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	sa_(t_data *data)
+void	sa_(t_data *data, int a)
 {
 	if (data->b_index > 1)
 		swap(&data->stack[data->b_index - 1], &data->stack[data->b_index - 2]);
-	ft_putstr_fd("sa\n", 1);
+	if (a)
+		ft_putstr_fd("sa\n", 1);
 }
-void	sb_(t_data *data)
+void	sb_(t_data *data, int a)
 {
 	if (data->b_index < data->size - 1)
 		swap(&data->stack[data->b_index], &data->stack[data->b_index + 1]);
-	ft_putstr_fd("sb\n", 1);
+	if (a)
+		ft_putstr_fd("sb\n", 1);
 }
 
-void	ss_(t_data *data)
+void	ss_(t_data *data, int a)
 {
-	sa_(data);
-	sb_(data);
+	sa_(data, 0);
+	sb_(data, 0);
+	if (a)
+		ft_putstr_fd("ss\n", 1);
 }
 
-void	pb_(t_data *data)
+void	pb_(t_data *data, int a)
 {
 	if (data->b_index > 0)
 		data->b_index--;
-	ft_putstr_fd("pb\n", 1);
+	if (a)
+		ft_putstr_fd("pb\n", 1);
 	
 }
-void	pa_(t_data *data)
+void	pa_(t_data *data, int a)
 {
 	if (data->b_index < data->size)
 		data->b_index++;
-	ft_putstr_fd("pa\n", 1);
+	if (a)
+		ft_putstr_fd("pa\n", 1);
 }
 
 void	shift_up(int *stack, int start, int end)
@@ -84,42 +90,50 @@ void	shift_down(int *stack, int start, int end)
 	stack[i] = tmp;
 }
 
-void 	ra_(t_data *data)
+void 	ra_(t_data *data, int a)
 {
 	if (data->b_index > 1)
 		shift_down(data->stack, 0, data->b_index);
-	ft_putstr_fd("ra\n", 1);
+	if (a)
+		ft_putstr_fd("ra\n", 1);
 }
 
-void	rb_(t_data *data)
+void	rb_(t_data *data, int a)
 {
 	if (data->size > data->b_index + 1)
 		shift_up(data->stack, data->b_index, data->size);
-	ft_putstr_fd("rb\n", 1);
+	if (a)
+		ft_putstr_fd("rb\n", 1);
 }
 
-void	rr_(t_data *data)
+void	rr_(t_data *data, int a)
 {
-	ra_(data);
-	rb_(data);
+	ra_(data, 0);
+	rb_(data, 0);
+	if (a)
+		ft_putstr_fd("rr\n", 1);
 }
 
-void 	rra_(t_data *data)
+void 	rra_(t_data *data, int a)
 {
 	if (data->b_index > 1)
 		shift_up(data->stack, 0, data->b_index);
-	ft_putstr_fd("rra\n", 1);
+	if (a)
+		ft_putstr_fd("rra\n", 1);
 }
 
-void	rrb_(t_data *data)
+void	rrb_(t_data *data, int a)
 {
 	if (data->size > data->b_index + 1)
 		shift_down(data->stack, data->b_index, data->size);
-	ft_putstr_fd("rrb\n", 1);
+	if (a)
+		ft_putstr_fd("rrb\n", 1);
 }
 
-void	rrr_(t_data *data)
+void	rrr_(t_data *data, int a)
 {
-	rra_(data);
-	rrb_(data);
+	rra_(data, 0);
+	rrb_(data, 0);
+	if (a)
+		ft_putstr_fd("rrr\n", 1);
 }

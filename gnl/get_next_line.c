@@ -3,81 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alae <alae@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: parmarti <parmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 12:14:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/28 22:16:25 by alae             ###   ########.fr       */
+/*   Created: 2020/07/23 12:35:40 by parmarti          #+#    #+#             */
+/*   Updated: 2020/08/05 21:03:10 by parmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		check(char *buf)
+static char	*ft_strjoin(char *s, char c)
 {
-	int i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	while (buf[i] != '\0')
+	while (s[i])
+		i++;
+	if (!(str = (char *)malloc(i + 2)))
+		return (0);
+	i = 0;
+	while (s[i])
 	{
-		if (buf[i] == '\n')
-			return (i);
+		str[i] = s[i];
 		i++;
 	}
-	return (-1);
+	str[i] = c;
+	str[i + 1] = '\0';
+	free(s);
+	return (str);
 }
 
-int		f_u_moul(char **save, char **line, int fd, char **buf)
+int			get_next_line(char **line)
 {
-	int ret;
+	char	*buffer;
+	int		flag;
 
-	if (fd < 0 || !line || ((*save == NULL) && !(*save = ft_calloc(1, 1))))
+	buffer = (char *)malloc(2);
+	if (!line || !(*line = (char *)malloc(1)) || !buffer)
 		return (-1);
-	if ((ret = check(*save)) >= 0)
+	*line[0] = '\0';
+	while ((flag = read(0, buffer, 1)) > 0)
 	{
-		(*line) = my_substr(*save, 0, ret, 0);
-		*save = my_substr(*save, ret + 1, ft_strlen(*save) - ret, 1);
-		return (1);
+		if (buffer[0] == '\n')
+			break ;
+		*line = ft_strjoin(*line, buffer[0]);
 	}
-	if (!(*buf = (char *)malloc(BUFFER_SIZE + 1)))
-		return (-1);
-	return (0);
-}
-
-// size_t	ft_strlen(const char *tab)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (tab[i])
-// 		i++;
-// 	return (i);
-// }
-
-int		get_next_line(int fd, char **line)
-{
-	static char *save;
-	char		*buf;
-	int			i;
-
-	if ((i = f_u_moul(&save, line, fd, &buf)))
-		return (i);
-	while ((i = read(fd, buf, BUFFER_SIZE)) >= 0)
-	{
-		buf[i] = 0;
-		save = my_strjoin(save, buf);
-		if ((i = check(save)) >= 0)
-		{
-			(*line) = my_substr(save, 0, i, 0);
-			(save) = my_substr((save), i + 1, ft_strlen((save)) - i, 1);
-			free(buf);
-			return (1);
-		}
-		if (*buf == '\0')
-		{
-			free(buf);
-			return (helper(line, &save));
-		}
-	}
-	free(buf);
-	return (i);
+	free(buffer);
+	return (flag);
 }

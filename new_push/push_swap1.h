@@ -40,6 +40,7 @@ typedef struct s_chunk {
 
 
 int		is_number(char *str);
+int		is_dupp(t_data *data);
 void	print_A(t_data data);
 void	print_B(t_data data);
 int		check_args(char **str, t_data *data);
@@ -51,19 +52,19 @@ void	swap(int *a, int *b);
 void	shift_up(int *stack, int start, int end);
 void	shift_down(int *stack, int start, int end);
 
-void	sa_(t_data *data);
-void	sb_(t_data *data);
-void	ss_(t_data *data);
-void	pa_(t_data *data);
-void	pb_(t_data *data);
+void	sa_(t_data *data, int a);
+void	sb_(t_data *data, int a);
+void	ss_(t_data *data, int a);
+void	pa_(t_data *data, int a);
+void	pb_(t_data *data, int a);
 
-void 	ra_(t_data *data);
-void	rb_(t_data *data);
-void	rr_(t_data *data);
+void 	ra_(t_data *data, int a);
+void	rb_(t_data *data, int a);
+void	rr_(t_data *data, int a);
 
-void 	rra_(t_data *data);
-void	rrb_(t_data *data);
-void	rrr_(t_data *data);
+void 	rra_(t_data *data, int a);
+void	rrb_(t_data *data, int a);
+void	rrr_(t_data *data, int a);
 
 
 int		quick_sort(t_data *data);

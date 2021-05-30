@@ -149,7 +149,7 @@ int		is_A_sorted(t_data data)
 	}
 	return (1);
 }
-
+/*
 int main(int argc, char **argv)
 {
 	// t_stack *stack_a;
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 	else if (check_args((argv + 1), &data) < 0 || is_dupp(&data) < 0) // passing data to checkargs
 	{
 		ft_putstr_fd("ERROR\n", 2);
-		// return (0);
+		return (0);
 	}
 	if (is_A_sorted(data))
 	{
@@ -193,7 +193,7 @@ int main(int argc, char **argv)
 
 	return (0);
 }
-
+*/
  
 void	print_stack(t_data data)
 {
