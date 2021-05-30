@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 21:42:08 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/30 21:46:22 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ void	ft_putchar_fd(char c, int fd);
 size_t	ft_strlen(const char *s);
 int		sort_three(t_data *data);
 int		*copyandsort(t_data *data);
+int		get_next_line(char **line);
+char	*my_strjoin(char *s, char c);
 
 #endif
