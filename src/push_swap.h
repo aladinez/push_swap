@@ -6,7 +6,7 @@
 /*   By: aez-zaou <aez-zaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 14:07:51 by aez-zaou          #+#    #+#             */
-/*   Updated: 2021/05/30 21:46:22 by aez-zaou         ###   ########.fr       */
+/*   Updated: 2021/05/31 14:04:43 by aez-zaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../gnl/get_next_line.h"
 
 typedef struct s_data {
 	int		*stack;
